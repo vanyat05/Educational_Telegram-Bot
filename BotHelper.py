@@ -7,8 +7,19 @@ import random
 # Токен вашего бота от BotFather
 TOKEN = "your_bot_token_here"
 
+# Проверяем, что токен изменен
+if TOKEN == "your_bot_token_here":
+    print("Ошибка: Токен бота не указан!")
+    print("Получите токен у @BotFather и вставьте его в переменную TOKEN")
+    exit(1)
+
 # Создаем экземпляр бота
-bot = telebot.TeleBot(TOKEN)
+try:
+    bot = telebot.TeleBot(TOKEN)
+    print("✅ Бот успешно инициализирован!")
+except Exception as e:
+    print(f"❌ Ошибка при создании бота: {e}")
+    exit(1)
 
 @bot.message_handler(commands=['posts'])
 def send_posts(message):
